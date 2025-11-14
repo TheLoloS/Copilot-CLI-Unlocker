@@ -2,7 +2,7 @@
 
 A tool to add custom models to GitHub Copilot CLI's allowed models list.
 
-> **Note:** This is a fork of the original [copilot-cli-free-models](https://github.com/agileandy/copilot-cli-free-models). Special thanks to the original creator https://github.com/agileandy/copilot-cli-free-models#:~:text=Navigation%20Menu-,agileandy,-/ for their work. This version has been enhanced to provide native support for both Bash (Linux/macOS/WSL) and Windows PowerShell, and it patches both required model arrays for full compatibility.
+> **Note:** This is a fork of the original [copilot-cli-free-models](https://github.com/agileandy/copilot-cli-free-models). Special thanks to the original creator @agileandy for his work. This version has been enhanced to provide native support for both Bash (Linux/macOS/WSL) and Windows PowerShell, and it patches both required model arrays for full compatibility.
 
 This fork introduces two dedicated scripts:
 - `patch-models.sh`: For Bash-based systems (Linux, macOS, WSL).
