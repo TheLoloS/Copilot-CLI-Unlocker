@@ -2,7 +2,7 @@
 
 A tool to add custom models to GitHub Copilot CLI's allowed models list.
 
-> **Note:** This is a fork of the original Copilot CLI Unlocker. Special thanks to the original creator for their work. This version has been enhanced to provide native support for both Bash (Linux/macOS/WSL) and Windows PowerShell, and it patches both required model arrays for full compatibility.
+> **Note:** This is a fork of the original [copilot-cli-free-models](https://github.com/agileandy/copilot-cli-free-models). Special thanks to the original creator https://github.com/agileandy/copilot-cli-free-models#:~:text=Navigation%20Menu-,agileandy,-/ for their work. This version has been enhanced to provide native support for both Bash (Linux/macOS/WSL) and Windows PowerShell, and it patches both required model arrays for full compatibility.
 
 This fork introduces two dedicated scripts:
 - `patch-models.sh`: For Bash-based systems (Linux, macOS, WSL).
@@ -44,8 +44,7 @@ This fork introduces two dedicated scripts:
     ```
 
 #### Bash Version in Action
-*(GIF placeholder - replace this with your actual GIF)*
-![Bash Unlocker Demo](path/to/bash-demo.gif)
+![unlock](https://github.com/user-attachments/assets/5384d3db-dc05-457b-bd76-10fe3545316e)
 
 ### PowerShell (Windows)
 
@@ -65,8 +64,7 @@ This fork introduces two dedicated scripts:
     ```
 
 #### PowerShell Version in Action
-*(GIF placeholder - replace this with your actual GIF)*
-![PowerShell Unlocker Demo](path/to/powershell-demo.gif)
+![unlock](https://github.com/user-attachments/assets/5384d3db-dc05-457b-bd76-10fe3545316e)
 
 
 ### After Patching (Both Systems)
