@@ -25,6 +25,7 @@ This fork introduces two dedicated scripts:
 >```bash
 >npm install -g @github/copilot@0.0.356
 >```
+<img width="786" height="508" alt="image" src="https://github.com/user-attachments/assets/6d2ec243-a34f-442f-b0c4-1d97748dd553" />
 
 
 - **In-App Model Switching**: After patching, you can switch between the added models using commands like `/model` directly within the Copilot CLI interface.
