@@ -65,7 +65,8 @@ This fork introduces two dedicated scripts:
     ```
 
 #### PowerShell Version in Action
-![unlock](https://github.com/user-attachments/assets/5384d3db-dc05-457b-bd76-10fe3545316e)
+![unlock](https://github.com/user-attachments/assets/eac05fc3-c71b-4934-9c6d-7d3706357488)
+
 
 
 ### After Patching (Both Systems)
