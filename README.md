@@ -44,7 +44,8 @@ This fork introduces two dedicated scripts:
     ```
 
 #### Bash Version in Action
-![unlock](https://github.com/user-attachments/assets/5384d3db-dc05-457b-bd76-10fe3545316e)
+![unlock-bash](https://github.com/user-attachments/assets/da8dd556-299a-4c3d-9911-868b7dd6367c)
+
 
 ### PowerShell (Windows)
 
