@@ -198,7 +198,8 @@ This can happen if the file is write-protected or if the script's patterns no lo
 1.  Verify the patch was applied by searching for one of your added models inside the `index.js` file.
 2.  Double-check your `~/.copilot/config.json` for correct spelling and syntax. The model name is case-sensitive and must be an exact match.
 3.  Check any updates of Copilot CLI or Copilot-CLI-Unlocker
-4.  Create Issue in this repo
+4.  Check your configuration at https://github.com/settings/copilot/features
+5.  Create Issue in this repo
 
 ## License
 
