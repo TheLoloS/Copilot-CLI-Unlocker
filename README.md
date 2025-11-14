@@ -20,6 +20,7 @@ This fork introduces two dedicated scripts:
 ### Suported Versions
 - GitHub Copilot CLI version `0.0.354`.
 - GitHub Copilot CLI version `0.0.355`.
+- GitHub Copilot CLI version `0.0.356`.
 
 ### For Bash Script (`patch-models.sh`)
 - **Bash shell** (macOS, Linux, WSL)
