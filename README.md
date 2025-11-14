@@ -150,7 +150,7 @@ The unlocker auto-detects the variable names and safely appends your desired mod
 
 ## Adapting for Future Updates
 
-If a future Copilot CLI update breaks the unlocker, you'll need to find the new patterns for both arrays.
+If a future Copilot CLI update breaks the unlocker, you'll need to find the new patterns for both arrays or wait for update of Copilot-CLI-Unlocker.
 
 1.  **Locate the arrays** by searching the `index.js` file for known model names like `"claude-sonnet"` or `"gpt-5"`.
 2.  **Find the variable names** they are assigned to (the characters before the `=`).
@@ -159,7 +159,7 @@ If a future Copilot CLI update breaks the unlocker, you'll need to find the new 
 ## Files in This Directory
 
 ```
-copilot-patch/
+Copilot-CLI-Unlocker/
 ├── patch-models.sh          # Unlocker for Linux, macOS, and WSL
 ├── patch-models.ps1         # Unlocker for Windows PowerShell
 └── README.md                # This file
@@ -176,3 +176,16 @@ This can happen if the file is write-protected or if the script's patterns no lo
 ### Model Still Not Working
 1.  Verify the patch was applied by searching for one of your added models inside the `index.js` file.
 2.  Double-check your `~/.copilot/config.json` for correct spelling and syntax. The model name is case-sensitive and must be an exact match.
+3.  Check any updates of Copilot CLI or Copilot-CLI-Unlocker
+4.  Create Issue in this repo
+
+## License
+
+This is a utility script for personal use. The GitHub Copilot CLI itself is proprietary software from GitHub.
+
+## Support
+
+For issues with:
+- **This patcher:** Check the troubleshooting section above
+- **Copilot CLI itself:** Contact GitHub Support
+- **Model availability:** Check with your GitHub organization's settings
