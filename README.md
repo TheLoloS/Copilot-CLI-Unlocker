@@ -17,6 +17,10 @@ This fork introduces two dedicated scripts:
 
 ## Requirements
 
+### Suported Versions
+- GitHub Copilot CLI version `0.0.354`.
+- GitHub Copilot CLI version `0.0.355`.
+
 ### For Bash Script (`patch-models.sh`)
 - **Bash shell** (macOS, Linux, WSL)
 - **Perl** (pre-installed on macOS/Linux)
