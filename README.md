@@ -12,16 +12,19 @@ This fork introduces two dedicated scripts:
 
 - **Dual Script Support**: Native scripts for both PowerShell on Windows and Bash on other systems.
 - **Dual Array Patching**: The script now patches both the simple model name array and the model object array (which includes labels), ensuring models appear correctly in any UI that uses them.
-- **Expanded Default Models**: Now includes `gpt-4.1`, `gpt-4o`, `gpt-5-mini`, `grok-code-fast-1` by default.
+- **Expanded Default Models**: Now includes `gpt-4.1`, `gpt-4o`, `gpt-5-mini`, `grok-code-fast-1`, `gemini-2.5-pro` by default.
 
 > [!WARNING]
 > **A Note on Copilot CLI Versions `0.0.356` & `0.0.357`**
 >
-> Version `0.0.356` of the Copilot CLI briefly introduced experimental models (`gpt-5.1`, `gpt-5.1-codex-mini`, `gpt-5.1-codex`). However, in the very next version (`0.0.357`), GitHub **removed the API connection code** for these models, making them non-functional.
+> Version `0.0.356` of the Copilot CLI briefly introduced experimental models (`gpt-5-codex`, `gpt-5.1`, `gpt-5.1-codex-mini`, `gpt-5.1-codex`). However, in the very next version (`0.0.357`), GitHub **removed the API connection code** for these models, making them non-functional.
 >
 > Our goal is to patch in only *working* models. Therefore, this script will not add these specific models on `v0.0.357` or newer.
 >
-> **If you wish to use these experimental models, you must use Copilot CLI version `0.0.356`. otherwise they will not work!**
+> **If you wish to use these experimental models, you must use Copilot CLI version `0.0.356`. otherwise they will not work!** you can switch to that version by:
+>```bash
+>npm install -g @github/copilot@0.0.356
+>```
 
 
 - **In-App Model Switching**: After patching, you can switch between the added models using commands like `/model` directly within the Copilot CLI interface.
