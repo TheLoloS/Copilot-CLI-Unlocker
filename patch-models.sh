@@ -17,10 +17,18 @@ SEARCH_PATHS=(
     "$(npm root -g 2>/dev/null)/@github/copilot/index.js"
     "/usr/local/lib/node_modules/@github/copilot/index.js"
     "/opt/homebrew/lib/node_modules/@github/copilot/index.js"
-    # Added path for Windows/Program Files
-    "/c/Program Files/nodejs/node_modules/@github/copilot/index.js"
-    "$APPDATA/npm/node_modules/@github/copilot/index.js"
 )
+
+# Add Windows paths only on Windows/MinGW
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
+    SEARCH_PATHS+=(
+        "/c/Program Files/nodejs/node_modules/@github/copilot/index.js"
+    )
+    if [[ -n "${APPDATA:-}" ]]; then
+        SEARCH_PATHS+=("$APPDATA/npm/node_modules/@github/copilot/index.js")
+    fi
+fi
+
 for path in "${SEARCH_PATHS[@]}"; do
     if [[ -f "$path" ]]; then
         COPILOT_PATH="$path"
@@ -89,12 +97,20 @@ fi
 
 NAMES_VAR_NAME=$(echo "$NAMES_ARRAY_PATTERN" | cut -d'=' -f1)
 CURRENT_NAMES_ARRAY=$(echo "$NAMES_ARRAY_PATTERN" | cut -d'=' -f2)
-CURRENT_MODELS_STR=$(echo "$CURRENT_NAMES_ARRAY" | sed 's/\[\|\]\|"//g')
-IFS=',' read -ra CURRENT_MODELS <<< "$CURRENT_MODELS_STR"
 
 echo -e "${GREEN}✓${NC} Found variable: ${BLUE}$NAMES_VAR_NAME${NC}"
 
-NEW_NAMES_MODELS=("${CURRENT_MODELS[@]}")
+# Use perl for proper extraction to avoid malformed arrays
+CURRENT_MODELS_STR=$(echo "$CURRENT_NAMES_ARRAY" | perl -pe 's/^\[//; s/\]$//; s/"//g')
+
+# Split by comma into bash array
+IFS=',' read -ra CURRENT_MODELS <<< "$CURRENT_MODELS_STR"
+
+# Create new array explicitly
+NEW_NAMES_MODELS=()
+for model in "${CURRENT_MODELS[@]}"; do
+    NEW_NAMES_MODELS+=("$model")
+done
 MODELS_ADDED=()
 for model in "${MODELS_TO_ADD[@]}"; do
     if [[ " ${CURRENT_MODELS[*]} " != *" $model "* ]]; then
@@ -165,6 +181,12 @@ if [[ "$DRY_RUN" == "true" ]]; then
     echo ""
     echo -e "  ${RED}2. FROM:${NC} $SEARCH_PATTERN_2"
     echo -e "     ${GREEN}TO:${NC}   $REPLACEMENT_2"
+    echo ""
+    echo -e "${BLUE}Verification: Checking array construction...${NC}"
+    echo -e "First element of new array: ${GREEN}${NEW_NAMES_MODELS[0]}${NC}"
+    last_idx=$((${#NEW_NAMES_MODELS[@]} - 1))
+    echo -e "Last element of new array: ${GREEN}${NEW_NAMES_MODELS[$last_idx]}${NC}"
+    echo -e "Total elements: ${GREEN}${#NEW_NAMES_MODELS[@]}${NC}"
     exit 0
 fi
 
@@ -194,6 +216,9 @@ if grep -qF "$REPLACEMENT_1" "$TARGET_FILE" && grep -qF "$REPLACEMENT_2" "$TARGE
         LABEL=$(generate_label "$model")
         echo -e "  - $model (${GREEN}Label: '$LABEL'${NC})"
     done
+    echo ""
+    echo -e "${YELLOW}⚠️  IMPORTANT: Test the copilot binary before using it!${NC}"
+    echo -e "   Run: ${BLUE}copilot --version${NC}"
     echo ""
     echo -e "${YELLOW}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
     echo -e "${YELLOW}  🎉  You can select models by /model command or: ${NC} "
