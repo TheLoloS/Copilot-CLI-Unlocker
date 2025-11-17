@@ -19,13 +19,42 @@ SEARCH_PATHS=(
     "/opt/homebrew/lib/node_modules/@github/copilot/index.js"
 )
 
-# Add Windows paths only on Windows/MinGW
-if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
-    SEARCH_PATHS+=(
-        "/c/Program Files/nodejs/node_modules/@github/copilot/index.js"
-    )
-    if [[ -n "${APPDATA:-}" ]]; then
-        SEARCH_PATHS+=("$APPDATA/npm/node_modules/@github/copilot/index.js")
+# Function to detect if running under a Windows-like environment (WSL, Git Bash, etc.)
+is_windows_like() {
+    # Check for WSL via specific environment variables or kernel name
+    if grep -qE "(Microsoft|WSL)" /proc/version &>/dev/null; then
+        return 0 # Success (it's WSL)
+    fi
+    # Check for Git Bash, MinGW, Cygwin via OSTYPE
+    if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" || "$OSTYPE" == mingw* ]]; then
+        return 0 # Success (it's Git Bash/etc.)
+    fi
+    return 1 # Failure (it's likely a native Linux/macOS)
+}
+
+# Add Windows-style paths if running in a Windows-like environment
+if is_windows_like; then
+    # In WSL, Windows drives are mounted under /mnt/
+    # In Git Bash, they are mounted directly, e.g., /c/
+    # We need to find the correct root for the C drive.
+    WIN_C_DRIVE=""
+    if [[ -d "/mnt/c" ]]; then
+        WIN_C_DRIVE="/mnt/c" # WSL style
+    elif [[ -d "/c" ]]; then
+        WIN_C_DRIVE="/c"     # Git Bash style
+    fi
+
+    # Proceed only if we found the C drive mount point
+    if [[ -n "$WIN_C_DRIVE" ]]; then
+        # Dynamically get APPDATA path. In WSL, env vars from Windows are not always present.
+        # We find it relative to the Windows user profile.
+        WIN_USER_PROFILE=$(wslpath "$(wslvar USERPROFILE 2>/dev/null)" 2>/dev/null || echo "$WIN_C_DRIVE/Users/$(whoami)")
+        WIN_APPDATA="$WIN_USER_PROFILE/AppData/Roaming"
+        
+        SEARCH_PATHS+=(
+            "$WIN_APPDATA/npm/node_modules/@github/copilot/index.js"
+            "$WIN_C_DRIVE/Program Files/nodejs/node_modules/@github/copilot/index.js"
+        )
     fi
 fi
 
@@ -107,10 +136,7 @@ CURRENT_MODELS_STR=$(echo "$CURRENT_NAMES_ARRAY" | perl -pe 's/^\[//; s/\]$//; s
 IFS=',' read -ra CURRENT_MODELS <<< "$CURRENT_MODELS_STR"
 
 # Create new array explicitly
-NEW_NAMES_MODELS=()
-for model in "${CURRENT_MODELS[@]}"; do
-    NEW_NAMES_MODELS+=("$model")
-done
+NEW_NAMES_MODELS=("${CURRENT_MODELS[@]}")
 MODELS_ADDED=()
 for model in "${MODELS_TO_ADD[@]}"; do
     if [[ " ${CURRENT_MODELS[*]} " != *" $model "* ]]; then

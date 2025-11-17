@@ -36,9 +36,9 @@ This fork introduces two dedicated scripts:
 
 | Platform | Status | Tested Versions | Notes |
 |----------|--------|----------------|-------|
-| macOS    | ✅ Working | v0.0.358 | Fully tested and verified |
-| Windows  | ⚠️ Should work | - | Uses conditional OSTYPE checks |
-| Linux    | ⚠️ Should work | - | Standard bash compatibility |
+| macOS    | ✅ Working | v0.0.358 | Fully tested and verified. |
+| Windows  | ✅ Working | v0.0.358 | Fully tested on PowerShell, WSL, and Git Bash. |
+| Linux    | ✅ Working | v0.0.358 | Verified via automated tests on Ubuntu. |
 
 **macOS Testing:**
 - Tested on macOS with Copilot CLI v0.0.358

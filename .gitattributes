@@ -1,0 +1,8 @@
+# Ustaw domyślne zachowanie dla wszystkich plików tekstowych
+* text=auto
+
+# Wymuś uniksowe końce linii (LF) dla skryptów shellowych
+*.sh text eol=lf
+
+# Wymuś windowsowe końce linii (CRLF) dla skryptów PowerShell
+*.ps1 text eol=crlf
