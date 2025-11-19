@@ -38,9 +38,9 @@ This fork introduces two dedicated scripts:
 
 | Platform | Status | Tested Versions | Notes |
 |----------|--------|----------------|-------|
-| macOS    | ✅ Working | v0.0.359 | Fully tested and verified. |
-| Windows  | ✅ Working | v0.0.359 | Fully tested on PowerShell, WSL, and Git Bash. |
-| Linux    | ✅ Working | v0.0.359 | Verified via automated tests on Ubuntu. |
+| macOS    | ✅ Working | v0.0.360 | Verified via automated tests on macOS |
+| Windows  | ✅ Working | v0.0.360 | Fully tested on PowerShell, WSL, and Git Bash and automated tests on Windows |
+| Linux    | ✅ Working | v0.0.360 | Verified via automated tests on Ubuntu. |
 
 
 **Note:** This script performs text-based find-and-replace on minified JavaScript. Different Copilot CLI versions may have different internal structure. Always test with `--dry-run` first.
@@ -53,7 +53,8 @@ This fork introduces two dedicated scripts:
 - GitHub Copilot CLI version `0.0.356`. (They added new models: gpt-5.1,gpt-5.1-codex-mini,gpt-5.1-codex)
 - GitHub Copilot CLI version `0.0.357`. (They remove code for added models: gpt-5.1,gpt-5.1-codex-mini,gpt-5.1-codex? wierd...)
 - GitHub Copilot CLI version `0.0.358`. (They fix and restore code for added models: gpt-5.1,gpt-5.1-codex-mini,gpt-5.1-codex 🩷)
-- GitHub Copilot CLI version `0.0.359`. (Latest tested version)
+- GitHub Copilot CLI version `0.0.359`.
+- GitHub Copilot CLI version `0.0.360`. (Latest tested version)
 
 ### For Bash Script (`patch-models.sh`)
 - **Bash shell** (macOS, Linux, WSL)
