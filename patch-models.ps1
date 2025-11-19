@@ -32,7 +32,6 @@ function Patch-CopilotModels {
     $ModelsToAdd = $Models.Split(',') | ForEach-Object { $_.Trim() }
 
     # --- Colors ---
-    Clear-Host
     Write-Host "----------------------------------------------------" -ForegroundColor Blue
     Write-Host "  Copilot CLI Unlocker (PowerShell Version)" -ForegroundColor Blue
     Write-Host "----------------------------------------------------" -ForegroundColor Blue
