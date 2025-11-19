@@ -56,7 +56,7 @@ jobs:
       if: runner.os == 'Windows'
       shell: pwsh
       run: |
-        ./patch-models.ps1 -DryRun | Tee-Object -FilePath output.log
+        ./patch-models.ps1 -DryRun *> output.log
         
     # Step 6: Verify the output log (for all operating systems)
     - name: Verify dry-run output
