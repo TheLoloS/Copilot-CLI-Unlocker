@@ -1,5 +1,7 @@
 # Copilot CLI Unlocker - Enhanced Fork
 
+[![CI Tests](https://github.com/TheLoloS/Copilot-CLI-Unlocker/actions/workflows/ci-tests.yml/badge.svg)](https://github.com/TheLoloS/Copilot-CLI-Unlocker/actions/workflows/ci-tests.yml)
+
 A tool to add custom models to GitHub Copilot CLI's allowed models list.
 
 > **Note:** This is a fork of the original [copilot-cli-free-models](https://github.com/agileandy/copilot-cli-free-models). Special thanks to the original creator [@agileandy](https://github.com/agileandy) for his work. This version has been enhanced to provide native support for both Bash (Linux/macOS/WSL) and Windows PowerShell, and it patches both required model arrays for full compatibility with /model command.
@@ -39,6 +41,7 @@ This fork introduces two dedicated scripts:
 | macOS    | ✅ Working | v0.0.359 | Fully tested and verified. |
 | Windows  | ✅ Working | v0.0.359 | Fully tested on PowerShell, WSL, and Git Bash. |
 | Linux    | ✅ Working | v0.0.359 | Verified via automated tests on Ubuntu. |
+
 
 **Note:** This script performs text-based find-and-replace on minified JavaScript. Different Copilot CLI versions may have different internal structure. Always test with `--dry-run` first.
 
@@ -216,9 +219,24 @@ This can happen if the file is write-protected or if the script's patterns no lo
 4.  Check your configuration at https://github.com/settings/copilot/features
 5.  Create Issue in this repo
 
-## License
+## Automated Testing & Reliability
 
-This is a utility script for personal use. The GitHub Copilot CLI itself is proprietary software from GitHub.
+This project uses **GitHub Actions** for Continuous Integration (CI) to ensure that both patcher scripts (`.sh` and `.ps1`) work correctly across multiple operating systems. Every change pushed to the repository is automatically tested on:
+
+-   **Linux (Ubuntu)**
+-   **macOS**
+-   **Windows**
+
+This automated process verifies that the scripts can correctly locate the Copilot CLI installation and prepare the patch without errors, giving users confidence in the tool's reliability with every update. You can view the latest test results [here](https://github.com/TheLoloS/Copilot-CLI-Unlocker/actions).
+
+## Acknowledgements & Contributions
+
+This project has been greatly improved by the contributions of the community. A special thanks to the following individuals:
+
+-   **[@agileandy](https://github.com/agileandy)** - For creating the original `copilot-cli-free-models` project, which served as the foundation for this fork.
+-   **[@ebrindley](https://github.com/ebrindley)** - For contributing critical fixes for macOS compatibility and resolving JavaScript syntax errors (PR #6).
+
+We also thank everyone who reports issues, suggests features, and helps make this tool better.
 
 ## Support
 
@@ -226,3 +244,11 @@ For issues with:
 - **This patcher:** Check the troubleshooting section above
 - **Copilot CLI itself:** Contact GitHub Support
 - **Model availability:** Check with your GitHub organization's settings
+
+---
+
+## License
+
+This is a utility script for personal use. The GitHub Copilot CLI itself is proprietary software from GitHub.
+
+
