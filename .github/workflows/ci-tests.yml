@@ -38,7 +38,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+        # cache: 'npm'
 
     # Step 3: Install the specific version of GitHub Copilot CLI for this test run
     - name: Install GitHub Copilot CLI @${{ matrix.copilot-version }}
