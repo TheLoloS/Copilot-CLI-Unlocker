@@ -32,6 +32,22 @@ This fork introduces two dedicated scripts:
 
 - **In-App Model Switching**: After patching, you can switch between the added models using commands like `/model` directly within the Copilot CLI interface.
 
+## Platform Compatibility
+
+| Platform | Status | Tested Versions | Notes |
+|----------|--------|----------------|-------|
+| macOS    | ✅ Working | v0.0.358 | Fully tested and verified. |
+| Windows  | ✅ Working | v0.0.358 | Fully tested on PowerShell, WSL, and Git Bash. |
+| Linux    | ✅ Working | v0.0.358 | Verified via automated tests on Ubuntu. |
+
+**macOS Testing:**
+- Tested on macOS with Copilot CLI v0.0.358
+- Script auto-detects Homebrew and npm global installations
+- All fixes verified to produce valid JavaScript output
+- Copilot binary remains functional after patching
+
+**Note:** This script performs text-based find-and-replace on minified JavaScript. Different Copilot CLI versions may have different internal structure. Always test with `--dry-run` first.
+
 ## Requirements
 
 ### Suported Versions
