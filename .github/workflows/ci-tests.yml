@@ -1,0 +1,86 @@
+# .github/workflows/ci-tests.yml
+
+name: CI Tests for Patcher Scripts
+
+# This workflow will run on pushes to 'main' and any version branches (e.g., v1.2.3),
+# as well as on any pull request targeting the 'main' branch.
+on:
+  push:
+    branches:
+      - 'main'
+      - 'v*.*.*' # Triggers on pushes to version branches like v0.0.359, v0.1.0, etc.
+      - 'pr-*'
+      - 'workflow'
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  test-patcher:
+    # Use a matrix strategy to run the same job across multiple OS, Node versions, and Copilot versions.
+    strategy:
+      fail-fast: false # Allows all jobs in the matrix to complete, even if one fails.
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [22.x] # Updated to your preferred Node.js version.
+        # Test against a list of known compatible versions and always check the latest.
+        copilot-version: ['0.0.356', '0.0.358', 'latest']
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    # Step 1: Check out the repository's code
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Step 2: Set up the Node.js environment
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        # cache: 'npm'
+
+    # Step 3: Install the specific version of GitHub Copilot CLI for this test run
+    - name: Install GitHub Copilot CLI @${{ matrix.copilot-version }}
+      run: npm install -g @github/copilot@${{ matrix.copilot-version }}
+
+    # Step 4: Run the Bash script dry-run (on Ubuntu and macOS)
+    - name: Run Bash script dry-run
+      if: runner.os == 'Linux' || runner.os == 'macOS'
+      run: |
+        chmod +x ./patch-models.sh
+        ./patch-models.sh --dry-run | tee output.log
+    
+    # Step 5: Run the PowerShell script dry-run (on Windows)
+    - name: Run PowerShell script dry-run
+      if: runner.os == 'Windows'
+      shell: pwsh
+      run: |
+        ./patch-models.ps1 -DryRun *> output.log
+        
+    # Step 6: Verify the output log (for all operating systems)
+    - name: Verify dry-run output
+      # Use bash for verification on all OS for consistent command syntax (grep, etc.).
+      shell: bash
+      run: |
+        echo "Verifying output.log content..."
+        cat output.log
+
+        # Check for any error messages in the output
+        if grep -q -i "Error:" output.log; then
+          echo "::error::Found 'Error:' in the output log!"
+          exit 1
+        fi
+        
+        # Check for expected success messages
+        if ! grep -q "DRY RUN MODE" output.log; then
+          echo "::error::'DRY RUN MODE' message not found!"
+          exit 1
+        fi
+        
+        if ! grep -q "Would perform 2 replacements" output.log; then
+          echo "::error::'Would perform 2 replacements' message not found!"
+          exit 1
+        fi
+        
+        echo "✅ Verification successful for Copilot @${{ matrix.copilot-version }} on ${{ matrix.os }}"
