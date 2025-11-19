@@ -25,7 +25,7 @@ This fork introduces two dedicated scripts:
 >```bash
 >npm install -g @github/copilot@0.0.356
 > or
->npm install -g @github/copilot@0.0.358
+>npm install -g @github/copilot@0.0.358+
 >```
 <img width="786" height="508" alt="image" src="https://github.com/user-attachments/assets/6d2ec243-a34f-442f-b0c4-1d97748dd553" />
 
@@ -39,12 +39,6 @@ This fork introduces two dedicated scripts:
 | macOS    | ✅ Working | v0.0.359 | Fully tested and verified. |
 | Windows  | ✅ Working | v0.0.359 | Fully tested on PowerShell, WSL, and Git Bash. |
 | Linux    | ✅ Working | v0.0.359 | Verified via automated tests on Ubuntu. |
-
-**macOS Testing:**
-- Tested on macOS with Copilot CLI v0.0.359
-- Script auto-detects Homebrew and npm global installations
-- All fixes verified to produce valid JavaScript output
-- Copilot binary remains functional after patching
 
 **Note:** This script performs text-based find-and-replace on minified JavaScript. Different Copilot CLI versions may have different internal structure. Always test with `--dry-run` first.
 
