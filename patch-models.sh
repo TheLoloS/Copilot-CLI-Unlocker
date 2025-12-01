@@ -69,7 +69,7 @@ TARGET_FILE="${COPILOT_PATH}"
 BACKUP_SUFFIX=".bak.$(date +%Y%m%d-%H%M%S)"
 DRY_RUN=false
 # Default models to add; you can change or override with the --models flag
-MODELS_TO_ADD=("gpt-4.1" "gpt-4o" "gpt-5-mini" "grok-code-fast-1" "gemini-2.5-pro") 
+MODELS_TO_ADD=("gpt-4o" "grok-code-fast-1" "raptor-mini" "gemini-2.5-pro") 
 
 # --- Colors ---
 RED='\033[0;31m'
