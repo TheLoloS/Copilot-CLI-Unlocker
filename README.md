@@ -39,9 +39,9 @@ This fork introduces two dedicated scripts:
 
 | Platform | Status | Tested Versions | Notes |
 |----------|--------|----------------|-------|
-| macOS    | ✅ Working | v0.0.362 | Verified via automated tests on macOS |
-| Windows  | ✅ Working | v0.0.362 | Fully tested on PowerShell, WSL, and Git Bash and automated tests on Windows |
-| Linux    | ✅ Working | v0.0.362 | Verified via automated tests on Ubuntu. |
+| macOS    | ✅ Working | v0.0.363 | Verified via automated tests on macOS |
+| Windows  | ✅ Working | v0.0.363 | Fully tested on PowerShell, WSL, and Git Bash and automated tests on Windows |
+| Linux    | ✅ Working | v0.0.363 | Verified via automated tests on Ubuntu. |
     
 
 **Note:** This script performs text-based find-and-replace on minified JavaScript. Different Copilot CLI versions may have different internal structure. Always test with `--dry-run` first.
@@ -58,6 +58,7 @@ This fork introduces two dedicated scripts:
 - GitHub Copilot CLI version `0.0.360`. 
 - GitHub Copilot CLI version `0.0.361`. (They added new model: Gemini 3 Pro. Latest tested version)
 - GitHub Copilot CLI version `0.0.362`. (They fix some issues only)
+- GitHub Copilot CLI version `0.0.363`. (Opus 4.5, GPT-4.1 and GPT-5-Mini are now available in GitHub Copilot CLI Native so i add models they dont add by default (gpt-4o,grok-code-fast-1,raptor-mini,gemini-2.5-pro (pls remember to unlock new models in Copilot stetings page)))
 
 ### For Bash Script (`patch-models.sh`)
 - **Bash shell** (macOS, Linux, WSL)
