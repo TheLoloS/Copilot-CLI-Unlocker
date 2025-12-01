@@ -23,7 +23,7 @@
 param(
     [string]$File,
     [switch]$DryRun,
-    [string]$Models = "gpt-4o,grok-code-fast-1,raptor-mini,gemini-2.5-pro"
+    [string]$Models = "gpt-4o,grok-code-fast-1,gemini-2.5-pro"
 )
 
 # --- Main logic ---
