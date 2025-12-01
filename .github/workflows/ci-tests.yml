@@ -22,7 +22,7 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node-version: [22.x] # Updated to your preferred Node.js version.
         # Test against a list of known compatible versions
-        copilot-version: ['0.0.361']
+        copilot-version: ['0.0.362']
 
     runs-on: ${{ matrix.os }}
 
